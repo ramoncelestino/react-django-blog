@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+
 
 class City(models.Model):
     name = models.CharField(max_length=50)
@@ -24,4 +26,15 @@ class Person(models.Model):
     def __str__(self):
         return self.name
 
+
+class Post(models.Model):
+    created_data = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=150)
+    description = models.TextField()
+    content = models.TextField()
+    image = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+
+    def __str__(self):
+        return self.title
 

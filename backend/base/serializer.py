@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Person
 from .models import Address
+from .models import Post
 
 
 
@@ -15,6 +16,11 @@ class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = ('id', 'name', 'email', 'phone', 'address') 
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post 
+        fields = '__all__'
         
 
 
