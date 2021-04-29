@@ -1,5 +1,8 @@
-import PersonCard from './PersonCard';
+import PersonCard from '../PersonCard';
 import api from '../../services/api';
+import React, { useState, useEffect } from 'react';
+
+import styles from './people.module.scss';
 
 const People = () => {
   const [people, setPeople] = useState([]);

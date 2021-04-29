@@ -1,0 +1,16 @@
+.posts {
+  background: #3a3a3a;
+  color: white;
+  padding: 5rem;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    border-radius: 50%;
+    width: 20rem;
+    height: 20rem;
+  }
+}
