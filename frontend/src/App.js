@@ -1,13 +1,15 @@
-import People from './components/People';
-import Posts from './components/Posts';
+import Articles from './components/Articles';
+import RestPost from './components/RestPost';
+import Article from './components/Article';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
   //return <PostCards posts={posts} />;
   return (
     <Router>
-      <Route path="/" component={People} exact />
-      <Route path="/posts" component={Posts} exact />
+      <Route path="/" component={Articles} exact />
+      <Route path="/createpost" component={RestPost} exact />
+      <Route path="/posts/:id" component={Article} />
     </Router>
   );
 }

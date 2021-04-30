@@ -24,7 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/people/', views.getPeople),
     path('api/people/<str:pk>/', views.getPerson, name="person"),
-    path('api/posts/', views.getPosts, name="posts")
+    path('api/posts/', views.getPosts, name="posts"),
+    path('api/posts/<int:pk>', views.getPost, name="post")
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

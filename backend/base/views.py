@@ -4,6 +4,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Person, Post
 from .serializer import PersonSerializer, PostSerializer
+from rest_framework import status
+
 
 @api_view(['GET'])
 def getPeople(request):
@@ -26,11 +28,34 @@ def getPerson(request, pk):
     
     return Response(person_serializer.data)
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def getPosts(request):
+    if request.method == 'GET':
+        posts = Post.objects.order_by('-created_data')
+        post_serializer = PostSerializer(posts, many=True)
 
-    posts = Post.objects.all()
-    post_serializer = PostSerializer(posts, many=True)
+        return Response(post_serializer.data)
+    
+    elif request.method == 'POST':
+        print(request.data)
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            print("AQUUI")
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    return Response(post_serializer.data)
+@api_view(['GET'])
+def getPost(request, pk):
+    post = Post.objects.get(id=pk)
+
+    serializer = PostSerializer(post)
+
+    return Response(serializer.data)
+
+
+
+    
+
+        
 
